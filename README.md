@@ -6,9 +6,22 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## GIT
 Creamos cuenta en github o usamos una existente > `https://github.com/`
 
+Creamos un repositorio para el proyecto
 
+Copiamos la url del HTTPS
 
+Master es el repositorio local
 
+Origin es el origen remoto
+
+git init > Crea un reporitorio local o lo reinicializa si ya está creado
+git add . 
+git commit -m "first commit"
+git remote add origin https://github.com/Awandor/adminPro.git
+git remote -v > Vemos nuestro repositorio remoto
+git push -u origin master > -u indica que use el origen por defecto
+
+Se crea en origin la rama master
 
 
 
