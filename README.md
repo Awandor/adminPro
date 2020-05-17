@@ -23,7 +23,38 @@ git push -u origin master > -u indica que use el origen por defecto
 
 Se crea en origin la rama master
 
+Ahora que tenemos un boilerplate de proyecto Angular con rutas y módulos podemos crear un tag en Github y un Release
 
+git tag -a v1.0.0 -m "Versión 1 - Lista para producción"
+
+git tag muestra los tags
+
+git push --tags > sube los tags al repositorio remoto
+
+Vamos a Releases > Tags > Add release notes
+
+## TS LINT
+Vamos a cambiar el tslint.json para permitir especificar el tipo de una variable y al mismo tiempo setearla
+
+ctrl + p buscamos tslint y buscamos no-inferrable-types y lo ponemos a false
+
+También queremos poder renombrar las variables que llevan @Input() y @Output()
+
+"no-input-rename": false,
+"no-output-rename": false,
+
+
+## NG2 CHARTS
+Vamos a trabajar con diagramas de `https://valor-software.com/ng2-charts/`
+
+Instalamos ng2-charts > `npm install --save ng2-charts`
+
+Instalamos ahora chart.js > `npm install chart.js --save`
+
+Cuando generamos componentes y no queremos que sean importados en app.module porque los vamos a importar en otro módulo
+podemos usar el flag `--skip-import`
+
+Importamos ChartsModule en el módulo apropiado
 
 
 

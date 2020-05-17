@@ -1,0 +1,10 @@
+<h3>{{ leyenda }}</h3>
+<div class="input-group">
+    <!-- Para poder usar ngModel hay que importar FormsModule, pero lo importamos en pages.module -->
+    <!-- Vamos a añadir un listener de ngModelChange este es un evento que emiten todos los ngModel cuando cambian sus valores -->
+    <input type="number" class="form-control" #txtProgress name="porcentaje" [(ngModel)]="porcentaje" min="0" max="100" (ngModelChange)="alCambiarInput( $event )">
+    <div class="input-group-append" id="button-addon4">
+        <button class="btn btn-outline-secondary" type="button" (click)="cambiarPorcentaje( -5 )"><i class="mdi mdi-minus"></i></button>
+        <button class="btn btn-outline-secondary" type="button" (click)="cambiarPorcentaje( +5 )"><i class="mdi mdi-plus"></i></button>
+    </div>
+</div>

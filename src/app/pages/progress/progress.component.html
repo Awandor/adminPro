@@ -1,1 +1,47 @@
-<p>progress works!</p>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Barra de progreso</h4>
+
+                <div class="progress">
+                    <!-- Los atributos aria-valuenow aria-valuemin son atributos personalizados de Bootstrap
+                    y Angular no puede manejarlos directamente -->
+                    <!-- <div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div> -->
+                    <div class="progress-bar" role="progressbar" [attr.ariaValuenow]="porcentaje1" aria-valuemin="0" aria-valuemax="100" [style.width]="porcentaje1 + '%'">{{ porcentaje1 + '%' }}</div>
+                </div>
+
+                <div class="progress mt-5">
+                    <div class="progress-bar bg-success" role="progressbar" [attr.ariaValuenow]="porcentaje2" aria-valuemin="0" aria-valuemax="100" [style.width]="porcentaje2 + '%'">{{ porcentaje2 + '%' }}</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+
+                <!-- Sin llaves cuadradas el valor es un string, no un número, con llaves cuadradas el valor es una variable de controlador -->
+                <!-- Los eventos personalizados se escuchan de la misma manera que los eventos click y disparan un método que recibe el evento -->
+                <app-incrementador [porcentaje]="porcentaje1" nombre="Progress azul" (cambioValor)="actualizarPorcentaje( $event )"></app-incrementador>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+
+                <!-- Los escuchadores de eventos no tienen porqué disparar un método, si la lógica es sencilla, de una sola línea -->
+                <app-incrementador [porcentaje]="porcentaje2" nombre="Progress verde" (cambioValor)="porcentaje2 = $event"></app-incrementador>
+                <!-- <app-incrementador [porcentaje]="porcentaje2" nombre="Progress verde" (cambioValor)="actualizarPorcentaje2( $event )"></app-incrementador> -->
+
+            </div>
+        </div>
+    </div>
+</div>
