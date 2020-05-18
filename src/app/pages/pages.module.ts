@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 
+// Módulos
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { ComponentsModule } from '../components/components.module';
@@ -11,6 +12,7 @@ import { PagesComponent } from '../pages/pages.component';
 import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { ProgressComponent } from '../pages/progress/progress.component';
 import { Graficos1Component } from '../pages/graficos1/graficos1.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 // Rutas
 import { PAGES_ROUTES } from './pages.routes';
@@ -23,7 +25,8 @@ import { PAGES_ROUTES } from './pages.routes';
         PagesComponent,
         DashboardComponent,
         ProgressComponent,
-        Graficos1Component
+        Graficos1Component,
+        AccountSettingsComponent
     ],
     exports: [
         PagesComponent,

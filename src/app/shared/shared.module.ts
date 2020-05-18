@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common'; // directivas como ngFor, pipes
+
 // Components
 import { HeaderComponent } from '../shared/header/header.component';
 import { SidebarComponent } from '../shared/sidebar/sidebar.component';
@@ -17,6 +20,10 @@ import { NopagefoundComponent } from '../shared/nopagefound/nopagefound.componen
         HeaderComponent,
         SidebarComponent,
         NopagefoundComponent
+    ],
+    imports: [
+        RouterModule,
+        CommonModule
     ],
     exports: [
         BreadcrumbsComponent,

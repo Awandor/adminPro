@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SettingsService } from './services/settings.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'adminPro';
+
+  // Con solo cargar SettingsService se dispara el constructor con el método cargarAjustes()
+
+  constructor( public ajustesService: SettingsService ) {
+
+  }
+
 }

@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+// Para poder usar una función cargada desde el index.html usamos declare y luego la ejecutamos
+
+declare function initPlugins(): void;
 
 @Component({
   selector: 'app-login',
@@ -7,9 +12,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor( private router: Router ) { }
 
   ngOnInit(): void {
+
+    initPlugins();
+
+  }
+
+  ingresar() {
+
+    console.log('ingresando...');
+
+    this.router.navigate( [ '/dashboard' ] );
+
   }
 
 }

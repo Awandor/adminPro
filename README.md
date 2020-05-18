@@ -57,6 +57,64 @@ podemos usar el flag `--skip-import`
 Importamos ChartsModule en el módulo apropiado
 
 
+## ESCOGER MODULOS
+Cuando creamos un componente podemos indicar en qué módulo queremos importarlo
+
+`ng g c pages/accountSettings -m="pages/pages.module.ts" --skipTests -is`
+
+## CAMBIAR EL TEMA PRINCIPAL DE MANERA DINAMICA
+Tenemos los data-theme en account-settings.component
+
+Tenemos un id en `<link href="assets/css/colors/default-dark.css" id="theme" rel="stylesheet">` en index.html
+
+Creamos click listeners en la vista de account-settings.component
+
+Ya hemos visto cómo se puede manipular el DOM con referencias hacia sus elementos.
+
+Ahora necesitamos hacer un referencia a todo el documento para acceder a index.html desde account-settings.component
+
+Hay dos maneras de hacerlo
+
+1. Usando @Inject( DOCUMENT ) private _document en el constructor
+_document es la referencia al objeto document del DOM
+
+2. Usando simplemente document de JS
+
+
+## CREAMOS UN SERVICIO PARA GUARDAR LOS SETTINGS EN LOCAL STORAGE
+
+`ng g s services/settings --skipTests`
+
+A partir de Angular 8 los servicios son proveidos en la raíz y no es necesario declararlo en ningún módulo
+
+Creamos una interfaz para los ajustes dos métodos para guardar y leer del local storage
+
+Cargamos el servicio en el constructor de account-settings.component y ya tenemps acceso a las propiedades y métodos
+
+Para cargar los ajustes hay que hacerlo en app.component o en pages.component
+
+
+## REFECTORIZAMOS
+
+No llevamos parte de lógica del componente account-settings.component al servicio y lo metemos en un método
+
+En index.html podemos evitar que siempre cargue primero el tema por defecto antes de leer del local storage quitando href
+
+
+## LOGIN
+
+Para que funcione ngSubmit en el formulario hay qie importar  `import { FormsModule } from '@angular/forms';` en el módulo del login
+
+Hay un problema con la página de login, pues no tiene sidebar y cuando se carga se ejecuta <script src="assets/js/custom.min.js"></script>
+que inicializa varios métodos que controlan el sidebar y este no existe.
+
+Tenemos que editar custom.min.js para englobar todo en una función a la que podremos llamar cuando queramos.
+
+La llamamos desde login.component y desde el componente que contiene todas las páginas: pages.component
+
+
+
+
 
 
 ## Development server
