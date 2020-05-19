@@ -12,15 +12,17 @@
                     <ul aria-expanded="false" class="collapse">
 
                         <!-- Para que funcionen los routerLink hay que importarlo en el módulo de shared -->
-                        <li><a routerLinkActive="active" routerLink="javascript:void()">My Profile </a>
+                        <li>
+                            <a routerLinkActive="active" routerLink="javascript:void()">My Profile </a>
                         </li>
-                        <li><a routerLinkActive="active" routerLink="javascript:void()">My Balance</a>
+                        <li>
+                            <a routerLinkActive="active" routerLink="javascript:void()">My Balance</a>
                         </li>
-                        <li><a routerLinkActive="active" routerLink="/graficos1">Graficos</a>
+                        <li>
+                            <a routerLinkActive="active" routerLink="/account-settings">Account Setting</a>
                         </li>
-                        <li><a routerLinkActive="active" routerLink="/account-settings">Account Setting</a>
-                        </li>
-                        <li><a routerLink="/login">Logout</a>
+                        <li>
+                            <a routerLink="/login">Logout</a>
                         </li>
                     </ul>
                 </li>
@@ -34,7 +36,11 @@
                     <ul aria-expanded="false" class="collapse">
 
                         <!-- usamos llaves cuadradas porque más adelante puede que enviemos propiedades con la url como arreglo -->
-                        <li *ngFor="let submenu of menu.submenu"><a routerLinkActive="active" [routerLink]="['submenu.url']">{{ submenu.titulo }} </a></li>
+                        <li *ngFor="let submenu of menu.submenu">
+                            <!-- <a routerLinkActive="active" [routerLink]="['submenu.url']">{{ submenu.titulo }} </a> -->
+                            <a routerLinkActive="active" routerLink="{{submenu.url}}">{{ submenu.titulo }}</a>
+                        </li>
+
                     </ul>
                 </li>
             </ul>

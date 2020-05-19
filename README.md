@@ -113,6 +113,50 @@ Tenemos que editar custom.min.js para englobar todo en una función a la que pod
 La llamamos desde login.component y desde el componente que contiene todas las páginas: pages.component
 
 
+## OBSERVABLES Y PROMESAS
+
+Ambos sirven para trabajar con procesos asíncronos
+
+Las promesas trabajan con único flujo de datos, se usan con una única data de respuesta, no es simple de cancelar
+
+Trabajaremos con promesas y funciones que retornan promesas
+
+Los observables trabajan con múltiples flujos de datos, al fallar puedes ejecutar comandos y reintentar, se pueden encadenar operadores como map, forEach,
+reduce, filter, retry, replay. Pueden ser creados desde otras fuentes como los eventos. Son funciones a las cuales podemos suscribirnos en múltiples lugares
+
+Aprenderemos a crear un observable manualmente
+
+Trabajaremos con operadores de los observables como:
+Retry
+Map
+Filter
+Next
+
+Funciones que retornan observables
+
+
+## SNIPPETS
+
+En VS Code vamos a Preferences > User snippets > escribimos html y seleccionamos
+
+
+## OPERADORES RXJS
+
+Documentación: `http://reactivex.io/documentation/operators.html`
+
+
+## BREADCRUMBS
+
+Pasamos el nombre de cada página a través de la propiedad data en pages.routing
+
+
+## CAMBIO DE TITULO DE WEB PAGE Y METAS
+
+En la documentación de Angular hay algo llamado Title, es una clase con métodos getTitle y setTitle, se inyecta en el componente
+
+Hay otra clase que se llama Meta
+
+
 
 
 

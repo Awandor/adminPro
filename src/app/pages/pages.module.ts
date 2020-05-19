@@ -16,6 +16,11 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 
 // Rutas
 import { PAGES_ROUTES } from './pages.routes';
+import { PromesasComponent } from './promesas/promesas.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
+import { RxjsMapComponent } from './rxjs-map/rxjs-map.component';
+import { RxjsFilterComponent } from './rxjs-filter/rxjs-filter.component';
+import { RxjsUnsubscribeComponent } from './rxjs-unsubscribe/rxjs-unsubscribe.component';
 
 
 
@@ -26,7 +31,12 @@ import { PAGES_ROUTES } from './pages.routes';
         DashboardComponent,
         ProgressComponent,
         Graficos1Component,
-        AccountSettingsComponent
+        AccountSettingsComponent,
+        PromesasComponent,
+        RxjsComponent,
+        RxjsMapComponent,
+        RxjsFilterComponent,
+        RxjsUnsubscribeComponent
     ],
     exports: [
         PagesComponent,
