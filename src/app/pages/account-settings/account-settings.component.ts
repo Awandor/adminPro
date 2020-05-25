@@ -1,13 +1,13 @@
 import { Component, OnInit/* , Inject */ } from '@angular/core';
 // import { DOCUMENT } from '@angular/common';
-import { SettingsService } from '../../services/settings.service';
+import { SettingsService } from '../../services/settings/settings.service';
 
-@Component({
+@Component( {
   selector: 'app-account-settings',
   templateUrl: './account-settings.component.html',
   styles: [
   ]
-})
+} )
 export class AccountSettingsComponent implements OnInit {
 
   constructor( /* @Inject( DOCUMENT ) private _DOCUMENT, */ public ajustesService: SettingsService ) {
@@ -65,13 +65,13 @@ export class AccountSettingsComponent implements OnInit {
 
       // Ahora añadimos la clase working a ref
 
-      ref.classList.add('working');
+      ref.classList.add( 'working' );
 
     }
 
   }
 
-  aplicarCheckedLocalSorage(  ) {
+  aplicarCheckedLocalSorage() {
 
     const selectores: any = document.getElementsByClassName( 'selector' ); // Esto es un arreglo
 
@@ -79,7 +79,7 @@ export class AccountSettingsComponent implements OnInit {
 
       if ( selector.getAttribute( 'data-theme' ) === this.ajustesService.ajustes.tema ) {
 
-        selector.classList.add('working');
+        selector.classList.add( 'working' );
 
         break; // IMPORTANTE
 

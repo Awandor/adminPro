@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Rutas
 import { APP_ROUTES } from './app.routes';
@@ -9,15 +9,15 @@ import { APP_ROUTES } from './app.routes';
 // Módulos
 import { PagesModule } from './pages/pages.module';
 
+// Services
+import { ServiceModule } from './services/service.module';
+
 // Components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
-
-
-
-@NgModule({
+@NgModule( {
   declarations: [
     AppComponent,
     LoginComponent,
@@ -25,11 +25,13 @@ import { RegisterComponent } from './register/register.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     APP_ROUTES,
     PagesModule,
-    FormsModule
+    ServiceModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
-})
+  bootstrap: [ AppComponent ]
+} )
 export class AppModule { }

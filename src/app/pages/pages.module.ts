@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 // Módulos
 import { SharedModule } from '../shared/shared.module';
-import { FormsModule } from '@angular/forms';
+// import { FormsModule } from '@angular/forms';
 import { ComponentsModule } from '../components/components.module';
 import { ChartsModule } from 'ng2-charts';
 
@@ -25,31 +25,31 @@ import { RxjsUnsubscribeComponent } from './rxjs-unsubscribe/rxjs-unsubscribe.co
 
 
 
-@NgModule({
-    declarations: [
-        PagesComponent,
-        DashboardComponent,
-        ProgressComponent,
-        Graficos1Component,
-        AccountSettingsComponent,
-        PromesasComponent,
-        RxjsComponent,
-        RxjsMapComponent,
-        RxjsFilterComponent,
-        RxjsUnsubscribeComponent
-    ],
-    exports: [
-        PagesComponent,
-        DashboardComponent,
-        ProgressComponent,
-        Graficos1Component
-    ],
-    imports: [
-        SharedModule,
-        PAGES_ROUTES,
-        FormsModule,
-        ComponentsModule,
-        ChartsModule
-    ]
-  })
-  export class PagesModule { }
+@NgModule( {
+  declarations: [
+    PagesComponent,
+    DashboardComponent,
+    ProgressComponent,
+    Graficos1Component,
+    AccountSettingsComponent,
+    PromesasComponent,
+    RxjsComponent,
+    RxjsMapComponent,
+    RxjsFilterComponent,
+    RxjsUnsubscribeComponent
+  ],
+  exports: [
+    PagesComponent,
+    DashboardComponent,
+    ProgressComponent,
+    Graficos1Component
+  ],
+  imports: [
+    SharedModule,
+    PAGES_ROUTES,
+    // FormsModule,
+    ComponentsModule,
+    ChartsModule
+  ]
+} )
+export class PagesModule { }

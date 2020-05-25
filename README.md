@@ -113,6 +113,17 @@ Tenemos que editar custom.min.js para englobar todo en una función a la que pod
 La llamamos desde login.component y desde el componente que contiene todas las páginas: pages.component
 
 
+## AGRUPAR TODOS LOS SERVICIOS EN UN MÓDULO
+
+Creamos un módulo `ng g m services/service --flat`
+
+Reagrupamos los servicios en carpetas de servicios
+
+Creamos archivo service.index.ts donde vamos a exportar todos los servicios y así si hay que hace cambios sólo lo hacemos aquí
+
+Hacemos el cambio en app.component, cuidado con las importaciones automáticas queremos que lo importe de `service.index`
+
+
 ## OBSERVABLES Y PROMESAS
 
 Ambos sirven para trabajar con procesos asíncronos
@@ -156,6 +167,52 @@ En la documentación de Angular hay algo llamado Title, es una clase con método
 
 Hay otra clase que se llama Meta
 
+
+## CONECTAR NUESTRO BACK-END CON NUESTRO FRONT-END
+
+Vamos a crear una clase que coincida con el modelo creado en Node.
+Creamos carpeta models dentro de app con archivo `usuario.model.ts`
+
+Trabajamos la página de registro, creamos validaciones del formulario.
+
+Instalamos sweetalert 2 `npm install --save sweetalert2`
+
+Lo importamos en `register.component`
+
+Vamos a llamar el servicio para crear un usuario
+
+Creamos `ng g s services/usuario/usuario --skipTests`
+
+Editamos `service.index` y añadimos el servicio
+
+
+## VAMOS A TRABAJAR CON EL FORMULARIO LOGIN POR APROXIMACIÓN DE TEMPLATE
+
+Creamos servicio de login llamando por POST nuestra ruta `login.route` del back-end.
+
+Desde `login.component` llamamos a ese servicio que retorna un observable al que podemos suscribirnos
+
+
+## LOGIN CON GOOGLE SIGN-IN
+
+Vamos a mis APIs de Google: `https://console.developers.google.com/`
+
+Dentro de mi app `Sign in con Google` > Credentials
+
+Documentación en `https://developers.google.com/identity/sign-in/web/sign-in#before_you_begin` > Integrate Google Sign-in > Load the Google Platform Library
+
+Seguimos la documentación, para el botón usaremos un código personalizado basado en la documentación > `Integrate Sign-in Using Listeners`
+
+Queremos generar el token de Google, trabajamos en `login.component`
+
+
+## CREAR GUARDS PARA PROTEGER PAGINAS
+
+`ng g g services/guards/loginGuard --skipTests`
+
+Escogemos opción CanActivate, qitamos cosas que no necesitamos y lo exportamos desde `services.index` y lo importamos en `services.module`
+
+Ahora queremos proteger todas las rutas de `pages.routes`, añadimos a pagesRoutes > canActivate: [LoginGuard]
 
 
 
