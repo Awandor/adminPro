@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 // Importamos el servicio cuidado con la ruta queremos usar nuestor service.index
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
 
   auth2: any; // The Sign-in object
 
-  constructor( public usuarioService: UsuarioService, private router: Router ) { }
+  constructor( public usuarioService: UsuarioService, private router: Router, private ngZone: NgZone ) { }
 
   ngOnInit(): void {
 
@@ -114,7 +114,10 @@ export class LoginComponent implements OnInit {
         console.log( 'loginUsuarioGoogle: ', resp ); // Debemos obtener aquí true
 
         // Ahora podemos navegar al login, necesitamos importar Router e inyectarlo en el constructor como siempre
-        this.router.navigate( [ '/dashboard' ] );
+        // this.router.navigate( [ '/dashboard' ] );
+
+        // Solución temporal a un bug de Angular
+        this.ngZone.run( () => this.router.navigate( [ '/dashboard' ] ) ).then();
 
       } );
 

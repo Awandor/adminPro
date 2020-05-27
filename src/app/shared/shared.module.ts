@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common'; // directivas como ngFor, pipes
+import { PipesModule } from '../pipes/pipes.module';
 
 // Components
 import { HeaderComponent } from '../shared/header/header.component';
@@ -11,25 +12,23 @@ import { NopagefoundComponent } from '../shared/nopagefound/nopagefound.componen
 
 
 
-
-
-
-@NgModule({
-    declarations: [
-        BreadcrumbsComponent,
-        HeaderComponent,
-        SidebarComponent,
-        NopagefoundComponent
-    ],
-    imports: [
-        RouterModule,
-        CommonModule
-    ],
-    exports: [
-        BreadcrumbsComponent,
-        HeaderComponent,
-        SidebarComponent,
-        NopagefoundComponent
-    ]
-  })
-  export class SharedModule { }
+@NgModule( {
+  declarations: [
+    BreadcrumbsComponent,
+    HeaderComponent,
+    SidebarComponent,
+    NopagefoundComponent
+  ],
+  imports: [
+    RouterModule,
+    CommonModule,
+    PipesModule
+  ],
+  exports: [
+    BreadcrumbsComponent,
+    HeaderComponent,
+    SidebarComponent,
+    NopagefoundComponent
+  ]
+} )
+export class SharedModule { }

@@ -1,0 +1,55 @@
+<div class="row animated fadeIn">
+
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Sample Form with the Icons</h4>
+                <h6 class="card-subtitle">made with bootstrap elements</h6>
+                <form ngNativeValidate #f="ngForm" class="form p-t-20" (ngSubmit)="enviarFormulario( f.value )">
+                    <div class="form-group">
+                        <label for="exampleInputuname">User Name</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+
+                            <!-- Para poder usar ngModel hay que haber importado FormsModule -->
+
+                            <input [ngModel]="usuario.nombre" name="nombre" type="text" class="form-control" placeholder="Username" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-email"></i></div>
+                            <input [ngModel]="usuario.email" name="email" type="email" class="form-control" placeholder="Enter email" [disabled]="usuario.google" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10"><i class="fa fa-save"></i> Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Fotografía del usuario</h4>
+                <h6 class="card-subtitle">made with bootstrap elements</h6>
+
+                <!-- <img [src]="usuarioService.usuario.img | imagen" alt=""> -->
+
+                <!-- Ya hemos importado el servicio -->
+
+                <!-- Para poder usar *ngIf necesitamos importar CommonModule en pages.module -->
+
+                <img *ngIf="!imagenTemp" [src]="usuario.img | imagen" class="h200" alt="{{usuario.nombre}}">
+                <img *ngIf="imagenTemp" [src]="imagenTemp" class="h200" alt="Imagen temporal">
+
+                <div class="form-group mt-5">
+                    <input class="form-control" type="file" (change)="seleccionarImagen( $event.target.files[0] )">
+                </div>
+                <button type="button" class="btn btn-success waves-effect waves-light m-r-10 mt-1" (click)="cambiarImagen()" [disabled]="!imagenSubir"><i class="fa fa-save"></i> Save</button>
+            </div>
+        </div>
+    </div>
+
+</div>

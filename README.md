@@ -215,6 +215,41 @@ Escogemos opción CanActivate, qitamos cosas que no necesitamos y lo exportamos 
 Ahora queremos proteger todas las rutas de `pages.routes`, añadimos a pagesRoutes > canActivate: [LoginGuard]
 
 
+## PERFIL DE USUARIO, PIPES Y SUBIDA DE MAGEN
+
+Empezamos creando un pipe para las imágenes `ng g p pipes/imagen --skipTests`
+
+Nos importa automáticamente el pipe en app.modules, no lo queremos ahí así que lo quitamos.
+
+Vamos a crear un módulo que contenga todos los pipes `ng g m pipes/pipes --flat`
+
+Aplicamos el pipe a las imágenes de usuario en el header y en el sidebar
+
+
+## COMPONENTE DE PERFIL DE USUARIO
+
+Creamos el componente `ng g c pages/profile -is --skipTests`
+
+Copiamos del template form-layout.html
+
+Creamos el servicio para actualizar Usuario
+
+
+## SUBIR ARCHIVOS AL SERVIDOR
+
+Creamos el servicio `ng g s services/subirArchivo/subirArchivo --skipTests`
+
+Lo añadimos a `services.index` y a `service.module`
+
+
+
+
+
+
+
+
+
+
 
 
 

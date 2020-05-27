@@ -21,6 +21,8 @@ import Swal from 'sweetalert2';
 // Importamos Router para poder navegar
 import { Router } from '@angular/router';
 
+import { SubirArchivoService } from '../../services/subirArchivo/subir-archivo.service'; // ojo a nuestro index de servicios, error cíclico?
+
 @Injectable( {
   providedIn: 'root'
 } )
@@ -30,7 +32,7 @@ export class UsuarioService {
 
   token: string;
 
-  constructor( public http: HttpClient, public router: Router ) {
+  constructor( public http: HttpClient, public router: Router, public subirArchivoService: SubirArchivoService ) {
 
     console.log( 'Servicio de usuario listo' );
 
@@ -46,11 +48,9 @@ export class UsuarioService {
 
     // Retornamos un observable al que nos podemos suscribir
 
-    // return this.http.post( url, usuario );
-
-    // Vamos a alertar al usuario que el registro sea ha realizado con éxito
-
     return this.http.post( url, usuario ).pipe( map( ( resp: any ) => {
+
+      // Vamos a alertar al usuario que el registro sea ha realizado con éxito
 
       Swal.fire( {
         title: 'Usuario creado',
@@ -176,6 +176,69 @@ export class UsuarioService {
 
     // Ahora podemos navegar al login, necesitamos importar Router e inyectarlo en el constructor como siempre
     this.router.navigate( [ '/login' ] );
+
+  }
+
+  actualizarUsuario( usuario: Usuario ) {
+
+    // Creamos variable url dependiendo del entorno si es producción o es desarrollo
+
+    const url = environment.url_services + '/usuario.route/' + usuario._id + '?token=' + this.token;
+
+    // Retornamos un observable al que nos podemos suscribir
+
+    return this.http.put( url, usuario ).pipe( map( ( resp: any ) => {
+
+      // console.log( 'respuesta del suscriptor', resp );
+
+      const usuarioDB: Usuario = resp.usuario;
+
+      this.guardarLocalStorage( usuarioDB._id, this.token, usuarioDB );
+
+      Swal.fire( {
+        title: 'Usuario actualizado',
+        text: usuario.nombre,
+        icon: 'success'
+      } );
+
+      return true;
+
+    } ) );
+
+  }
+
+  prepararSubirArchivo( archivo: File, id: string ) {
+
+    console.log( 'imagen' );
+
+    // subirArchivoService retorna una promesa
+    this.subirArchivoService.subirArchivo( archivo, 'usuarios', id ).then( ( resp: any ) => {
+
+      // console.log( 'subido: ', resp ); // Es un JSON string hay que volver a convertirlo en un objeto
+
+      const objetoRespuesta = JSON.parse( resp );
+
+      console.log( objetoRespuesta );
+
+      this.usuario.img = objetoRespuesta.usuario.img;
+
+      const usuarioDB: Usuario = objetoRespuesta.usuario;
+
+      this.guardarLocalStorage( id, this.token, this.usuario );
+
+      Swal.fire( {
+        title: 'Imagen de usuario actualizada',
+        text: usuarioDB.nombre,
+        icon: 'success'
+      } );
+
+      return true;
+
+    } ).catch( resp => {
+
+      console.log( resp );
+
+    } );
 
   }
 

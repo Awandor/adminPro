@@ -11,6 +11,7 @@ import { RxjsMapComponent } from './rxjs-map/rxjs-map.component';
 import { RxjsFilterComponent } from './rxjs-filter/rxjs-filter.component';
 import { RxjsUnsubscribeComponent } from './rxjs-unsubscribe/rxjs-unsubscribe.component';
 import { LoginGuardGuard } from '../services/guards/login-guard.guard';
+import { ProfileComponent } from './profile/profile.component';
 
 // Todas las rutas tienen una propiedad opcional llamada data que puede ser cualquier valor, objeto, arreglo, booleano
 // lo mejor es siempre tratarlo como un objeto
@@ -32,6 +33,7 @@ const pagesRoutes: Routes = [
       { path: 'rxjs-map', component: RxjsMapComponent, data: { titulo: 'rxjs Observable - map' } },
       { path: 'rxjs-filter', component: RxjsFilterComponent, data: { titulo: 'rxjs Observable - filter' } },
       { path: 'rxjs-unsubscribe', component: RxjsUnsubscribeComponent, data: { titulo: 'rxjs Observable - unsubscribe' } },
+      { path: 'profile', component: ProfileComponent, data: { titulo: 'Perfil' } },
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     ]
   },
