@@ -242,6 +242,33 @@ Creamos el servicio `ng g s services/subirArchivo/subirArchivo --skipTests`
 Lo añadimos a `services.index` y a `service.module`
 
 
+## COMPONENTE DE USUARIOS
+
+Vamos a `sidebar.service` que crea dinámicamente el menú del sidebar, añadimos una nueva sección de Administración
+
+Creamos componente de Usuarios `ng g c pages/usuarios -is --skipTests`
+
+Comprobamos que ha sido importado a `pages.module`. Lo añadimos a `pages.routes`
+
+Vamos a crear un servicio que nos permita obtener todos los usuarios, lo crearemos en `usuario.service`
+
+Nos fijamos en la petición GET creada en Postman
+
+
+## COMPONENTE SUBIDA DE IMAGENES EN UNA MODAL
+
+Creamos componente `ng g c components/modalUpload -is --skipTests`
+
+Lo importamos en pages.module. Ahora colocamos su etiqueta en pages.component.html para que esté accesible en todas las páginas
+
+Tomamos ejemplo de modal de Bootstrap
+
+Hay un problema para pasar el _id a la modal, vamos a crear un servicio intermedio entre la comunicación de los componentes
+y modal-upload component `ng g s components/modal-upload/modalUpload --skipTests`
+
+Lo importamos en service.module para que todas las páginas puedan acceder a él.
+
+Ahora lo importamos en nuestro componente modal.upload
 
 
 

@@ -12,6 +12,8 @@ import { RxjsFilterComponent } from './rxjs-filter/rxjs-filter.component';
 import { RxjsUnsubscribeComponent } from './rxjs-unsubscribe/rxjs-unsubscribe.component';
 import { LoginGuardGuard } from '../services/guards/login-guard.guard';
 import { ProfileComponent } from './profile/profile.component';
+// Administración
+import { UsuariosComponent } from './usuarios/usuarios.component';
 
 // Todas las rutas tienen una propiedad opcional llamada data que puede ser cualquier valor, objeto, arreglo, booleano
 // lo mejor es siempre tratarlo como un objeto
@@ -34,6 +36,10 @@ const pagesRoutes: Routes = [
       { path: 'rxjs-filter', component: RxjsFilterComponent, data: { titulo: 'rxjs Observable - filter' } },
       { path: 'rxjs-unsubscribe', component: RxjsUnsubscribeComponent, data: { titulo: 'rxjs Observable - unsubscribe' } },
       { path: 'profile', component: ProfileComponent, data: { titulo: 'Perfil' } },
+      // Administración
+      { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Administración de Usuarios' } },
+      /* { path: 'hospitales', component: UsuariosComponent, data: { titulo: 'Administración Hospitales' } },
+      { path: 'medicos', component: UsuariosComponent, data: { titulo: 'Administración de Médicos' } }, */
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     ]
   },

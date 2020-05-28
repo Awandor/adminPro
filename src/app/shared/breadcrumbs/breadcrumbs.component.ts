@@ -8,13 +8,12 @@ import { filter, map } from 'rxjs/operators';
 // Para cambiar el título de la webpage importamos Title
 import { Title, Meta, MetaDefinition } from '@angular/platform-browser';
 
-
-@Component({
+@Component( {
   selector: 'app-breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
   styles: [
   ]
-})
+} )
 export class BreadcrumbsComponent implements OnInit {
 
   tituloPagina: string = '';
@@ -45,33 +44,33 @@ export class BreadcrumbsComponent implements OnInit {
 
         return event instanceof ActivationEnd;
 
-      }),
-      filter( (event: ActivationEnd) => {
+      } ),
+      filter( ( event: ActivationEnd ) => {
 
         return event.snapshot.firstChild === null;
 
-      }),
+      } ),
       map( event => event.snapshot.data.titulo )
     )
-    .subscribe( data => {
+      .subscribe( data => {
 
-      console.log(data);
+        // console.log(data);
 
-      this.tituloPagina = data;
+        this.tituloPagina = data;
 
-      this.title.setTitle(data);
+        this.title.setTitle( data );
 
-      this.meta.addTag( { name: 'description', content: data } );
+        this.meta.addTag( { name: 'description', content: data } );
 
-      // También podemos usar el tipo MetaDefinition de Angular que nos ayuda con las propiedades del objeto
+        // También podemos usar el tipo MetaDefinition de Angular que nos ayuda con las propiedades del objeto
 
-      const algo: MetaDefinition = {
-        name: 'author', content: 'Dan Anders Häggblom'
-      };
+        const algo: MetaDefinition = {
+          name: 'author', content: 'Dan Anders Häggblom'
+        };
 
-      this.meta.addTag(algo);
+        this.meta.addTag( algo );
 
-    } );
+      } );
 
   }
 

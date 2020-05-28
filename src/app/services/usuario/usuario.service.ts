@@ -64,7 +64,7 @@ export class UsuarioService {
 
   }
 
-  loginUsuario( usuario: Usuario, recordar: Boolean = false ) {
+  loginUsuario( usuario: Usuario, recordar: boolean = false ) {
 
     // Guardamos en local storage em email
 
@@ -191,9 +191,15 @@ export class UsuarioService {
 
       // console.log( 'respuesta del suscriptor', resp );
 
-      const usuarioDB: Usuario = resp.usuario;
+      // Refactorizamos para poder usar este método para otra cosas como actualizar el role
 
-      this.guardarLocalStorage( usuarioDB._id, this.token, usuarioDB );
+      if ( usuario._id === this.usuario._id ) {
+
+        const usuarioDB: Usuario = resp.usuario;
+
+        this.guardarLocalStorage( usuarioDB._id, this.token, usuarioDB );
+
+      }
 
       Swal.fire( {
         title: 'Usuario actualizado',
@@ -239,6 +245,58 @@ export class UsuarioService {
       console.log( resp );
 
     } );
+
+  }
+
+  obtenerUsuarios( desde: number = 0 ) {
+
+    // Creamos variable url dependiendo del entorno si es producción o es desarrollo
+
+    const url = environment.url_services + '/usuario.route?desde=' + desde;
+
+    return this.http.get( url, {} );
+
+  }
+
+  buscarUsuarioConcreto( terminoBusqueda: string ) {
+
+    // Creamos variable url dependiendo del entorno si es producción o es desarrollo
+
+    const url = environment.url_services + '/busqueda.route/coleccion/usuarios/' + terminoBusqueda;
+
+    return this.http.get( url, {} ).pipe( map( ( resp: any ) => resp.usuarios ) );
+
+  }
+
+  borrarUsuario( id: string ) {
+
+    console.log( 'Usuario a borrar', id );
+
+    // Creamos variable url dependiendo del entorno si es producción o es desarrollo
+
+    const url = environment.url_services + '/usuario.route/' + id + '?token=' + this.token;
+
+    console.log( 'Ruta enviada al back-end', url );
+
+    // Retornamos un observable al que nos podemos suscribir
+
+    return this.http.delete( url ).pipe( map( ( resp: any ) => {
+
+      console.log( 'respuesta de back-end', resp );
+
+      /* const usuarioDB: Usuario = resp.usuario;
+
+      this.guardarLocalStorage( usuarioDB._id, this.token, usuarioDB ); */
+
+      Swal.fire( {
+        title: 'Usuario borrado',
+        text: resp.usuario.nombre,
+        icon: 'success'
+      } );
+
+      return true;
+
+    } ) );
 
   }
 

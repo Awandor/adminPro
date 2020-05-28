@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({
+@Injectable( {
   providedIn: 'root'
-})
+} )
 export class SidebarService {
 
   menu: any = [
@@ -18,6 +18,15 @@ export class SidebarService {
         { titulo: 'rxjs Observable - map', url: '/rxjs-map' },
         { titulo: 'rxjs Observable - filter', url: '/rxjs-filter' },
         { titulo: 'rxjs Observable - unsubscribe', url: '/rxjs-unsubscribe' },
+      ]
+    },
+    {
+      titulo: 'Administración',
+      icono: 'mdi mdi-folder-lock-open',
+      submenu: [
+        { titulo: 'Usuarios', url: '/usuarios' },
+        { titulo: 'Hospitales', url: '/hospitales' },
+        { titulo: 'Médicos', url: '/medicos' },
       ]
     }
   ];

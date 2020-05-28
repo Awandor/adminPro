@@ -17,14 +17,16 @@ import { ProgressComponent } from '../pages/progress/progress.component';
 import { Graficos1Component } from '../pages/graficos1/graficos1.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { ProfileComponent } from './profile/profile.component';
-
-// Rutas
-import { PAGES_ROUTES } from './pages.routes';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { RxjsMapComponent } from './rxjs-map/rxjs-map.component';
 import { RxjsFilterComponent } from './rxjs-filter/rxjs-filter.component';
 import { RxjsUnsubscribeComponent } from './rxjs-unsubscribe/rxjs-unsubscribe.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
+
+// Rutas
+import { PAGES_ROUTES } from './pages.routes';
+import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 
 
 
@@ -41,7 +43,9 @@ import { RxjsUnsubscribeComponent } from './rxjs-unsubscribe/rxjs-unsubscribe.co
     RxjsMapComponent,
     RxjsFilterComponent,
     RxjsUnsubscribeComponent,
-    ProfileComponent
+    ProfileComponent,
+    UsuariosComponent,
+    ModalUploadComponent
   ],
   exports: [
     PagesComponent,
