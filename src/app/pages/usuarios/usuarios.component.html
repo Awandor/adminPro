@@ -46,25 +46,25 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let usuario of usuarios">
-                            <td class="w70 align-middle text-center" data-toggle="modal" data-target="#imageModal" data-tipo="usuarios" (click)="modalUploadService.mostrarModal(usuario._id, 'usuarios')">
+                            <td class="w70 align-middle text-center pointer" data-toggle="modal" data-target="#imageModal" data-tipo="usuarios" (click)="modalUploadService.mostrarModal(usuario, 'usuarios')">
+                                <!-- <td class="w70 align-middle text-center" (click)="modalUploadService.mostrarModal('#imageModal', usuario._id, 'usuarios')"> -->
                                 <img [src]="usuario.img | imagen" class="h50">
                             </td>
                             <td class="align-middle">{{ usuario.email }}</td>
                             <td class="align-middle">{{ usuario.nombre }}</td>
                             <td class="align-middle">
 
-                                <select [(ngModel)]="usuario.role" name="role" class="form-control">
+                                <select [(ngModel)]="usuario.role" name="role" class="form-control" (change)="guardarUsuario( usuario )">
                                     <option value="ADMIN_ROLE">Administrador</option>
                                     <option value="USER_ROLE">Usuario</option>
                                 </select>
 
                             </td>
                             <td class="align-middle">
-                                <label *ngIf="usuario.google" class="label label-danger">Google</label>
-                                <label *ngIf="!usuario.google" class="label label-primary">Normal</label>
+                                <div *ngIf="usuario.google"><span class="badge badge-danger">Google</span></div>
+                                <div *ngIf="!usuario.google"><span class="badge badge-primary">Normal</span></div>
                             </td>
                             <td class="align-middle">
-                                <button class="btn btn-primary btn-sm mr-2" (click)="guardarUsuario( usuario )"><i class="fa fa-save"></i> Save</button>
                                 <button class="btn btn-danger btn-sm" (click)="borrarUsuario( usuario )"><i class="fa fa-trash"></i> Delete</button>
                             </td>
                         </tr>

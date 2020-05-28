@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Usuario } from '../../models/usuario.model';
 import { UsuarioService } from '../../services/service.index';
 
 import Swal from 'sweetalert2';
 import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component( {
   selector: 'app-usuarios',
@@ -26,6 +27,16 @@ export class UsuariosComponent implements OnInit {
   ngOnInit(): void {
 
     this.obtenerUsuariosRegistrados();
+
+    // Vamos a suscribirnos a notificacionSubidaImagen
+
+    this.modalUploadService.notificacionSubidaImagen.subscribe( ( resp: any ) => {
+
+      // console.log( 'notificacionSubidaImagen', resp );
+
+      this.obtenerUsuariosRegistrados();
+
+    } );
 
   }
 

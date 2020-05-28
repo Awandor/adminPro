@@ -271,6 +271,11 @@ Lo importamos en service.module para que todas las páginas puedan acceder a él
 Ahora lo importamos en nuestro componente modal.upload
 
 
+## NG BOOTSTRAP
+
+`ng add @ng-bootstrap/ng-bootstrap`
+
+
 
 
 

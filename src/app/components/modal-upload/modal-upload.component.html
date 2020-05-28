@@ -3,14 +3,14 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
+                <h5 class="modal-title">{{modalUploadService.nombre}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
 
             <div class="modal-body text-center">
-                <img *ngIf="!imagenTemp" [src]="'xxx' | imagen" class="h200">
+                <img *ngIf="!imagenTemp" [src]="modalUploadService.img | imagen" class="h200">
                 <img *ngIf="imagenTemp" [src]="imagenTemp" class="h200" alt="Imagen temporal">
 
                 <div class="form-group mt-5">
@@ -19,10 +19,34 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="modalCloseButton" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="subirImagen()" [disabled]="!imagenTemp"><i class="fa fa-save"></i> Save changes</button>
             </div>
 
         </div>
     </div>
 </div>
+
+<!-- <ng-template #imageModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+        <img *ngIf="!imagenTemp" [src]="'xxx' | imagen" class="h200">
+        <img *ngIf="imagenTemp" [src]="imagenTemp" class="h200" alt="Imagen temporal">
+
+        <div class="form-group mt-5">
+            <input class="form-control" type="file" (change)="seleccionarImagen( $event.target.files[0] )">
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+<button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="subirImagen()" [disabled]="!imagenTemp"><i class="fa fa-save"></i> Save changes</button>
+</div>
+</ng-template> -->

@@ -16,6 +16,7 @@ import { ServiceModule } from './services/service.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule( {
   declarations: [
@@ -29,7 +30,8 @@ import { RegisterComponent } from './register/register.component';
     ReactiveFormsModule,
     APP_ROUTES,
     PagesModule,
-    ServiceModule
+    ServiceModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [ AppComponent ]

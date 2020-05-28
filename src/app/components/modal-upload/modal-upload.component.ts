@@ -4,19 +4,20 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { ModalUploadService } from './modal-upload.service';
 import { SubirArchivoService } from '../../services/subirArchivo/subir-archivo.service';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component( {
   selector: 'app-modal-upload',
   templateUrl: './modal-upload.component.html',
   styles: [
-  ]
+  ],
 } )
 export class ModalUploadComponent implements OnInit {
 
   imagenSubir: File;
 
   imagenTemp: string | ArrayBuffer;
+
+  imagenActual: string;
 
   constructor( public subirArchivoService: SubirArchivoService, public modalUploadService: ModalUploadService ) {
 
@@ -25,6 +26,8 @@ export class ModalUploadComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.imagenActual = this.modalUploadService.img; console.log( this.imagenActual );
 
   }
 
@@ -83,13 +86,15 @@ export class ModalUploadComponent implements OnInit {
     this.subirArchivoService.subirArchivo( this.imagenSubir, this.modalUploadService.tipo, this.modalUploadService.id )
       .then( resp => {
 
+        // notificacionSubidaImagen es un EventEmitter que activamos con emit
+
+        this.modalUploadService.notificacionSubidaImagen.emit( resp );
+
         // Cerrar modal
 
         console.log( 'Queremos cerrar modal' );
 
-        const modal: any = document.getElementById( 'imageModal' );
-
-        modal.modal( 'hide' );
+        this.cerrarModal();
 
       } )
       .catch( err => {
@@ -97,6 +102,15 @@ export class ModalUploadComponent implements OnInit {
         console.log( 'Error al subir la imagen', err );
 
       } );
+
+  }
+
+  cerrarModal() {
+
+    this.imagenTemp = null;
+    this.imagenSubir = null;
+
+    this.modalUploadService.ocultarModal();
 
   }
 
