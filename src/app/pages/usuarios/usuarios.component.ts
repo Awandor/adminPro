@@ -4,7 +4,6 @@ import { UsuarioService } from '../../services/service.index';
 
 import Swal from 'sweetalert2';
 import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component( {
   selector: 'app-usuarios',
@@ -146,12 +145,6 @@ export class UsuariosComponent implements OnInit {
           this.obtenerUsuariosRegistrados();
 
         } );
-
-        Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
-        );
 
       }
 

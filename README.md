@@ -275,7 +275,41 @@ Ahora lo importamos en nuestro componente modal.upload
 
 `ng add @ng-bootstrap/ng-bootstrap`
 
+De momento no lo estoy usando por la dificultad de pasar la referencia de la modal en el componente que la llama
 
+
+## CREAR SECCION DE HOSPITALES
+
+Tenemos el modelo de Hospital, vamos a crear `hospitales.component.ts` en pages
+
+Comprobamos que esté importado en pages.module
+
+Añadimos la ruta
+
+Creamos un servicio llamado `hospital.service.ts`, ubicado en el siguiente path:
+services > hospital > hospital.service.ts
+
+Añadimos a `sidebar.service`
+
+Este servicio debe de tener las siguientes funciones:
+1. cargarHospitales(): No hace falta que reciba parámetros, pero retorna un observable con todos los hospitales.
+2. obtenerHospital( id: string ): Esta función recibe un ID de un hospital y retorna toda la información del mismo.
+
+Este servicio no existe actualmente en el backend, por lo cual hay que crearlo en las rutas de los hospitales
+
+
+## CREAR SECCION DE MEDICOS
+
+Creamos `medicos.component.ts` en pages
+
+Comprobamos que esté importado en pages.module
+
+Añadimos la ruta
+
+Creamos un servicio llamado `medico.service.ts`, ubicado en el siguiente path:
+services > medico > medico.service.ts
+
+Añadimos a `sidebar.service`
 
 
 

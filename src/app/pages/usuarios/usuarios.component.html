@@ -46,7 +46,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let usuario of usuarios">
-                            <td class="w70 align-middle text-center pointer" data-toggle="modal" data-target="#imageModal" data-tipo="usuarios" (click)="modalUploadService.mostrarModal(usuario, 'usuarios')">
+                            <td class="w70 align-middle text-center pointer" data-toggle="modal" data-target="#imageModal" (click)="modalUploadService.mostrarModal(usuario, 'usuarios')">
                                 <!-- <td class="w70 align-middle text-center" (click)="modalUploadService.mostrarModal('#imageModal', usuario._id, 'usuarios')"> -->
                                 <img [src]="usuario.img | imagen" class="h50">
                             </td>

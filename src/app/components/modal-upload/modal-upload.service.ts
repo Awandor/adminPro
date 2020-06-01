@@ -1,5 +1,4 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Usuario } from 'src/app/models/usuario.model';
 
 @Injectable( {
@@ -19,30 +18,21 @@ export class ModalUploadService {
 
   public notificacionSubidaImagen = new EventEmitter<any>(); // Emitirá la respuesta que vemos en Postman al subir una imagen
 
-  constructor( private modalService: NgbModal ) {
+  constructor() {
 
     console.log( 'Modal upload service listo' );
 
   }
 
-  /* mostrarModal( content: string, id: string, tipo: string ) {
+  obtenerTipo() {
 
-    this.tipo = tipo;
+    return this.tipo;
 
-    this.id = id;
-
-    console.log( id );
-
-    this.modalService.open( content, { ariaLabelledBy: 'modal-basic-title' } ).result.then( ( result ) => {
-      // this.closeResult = `Closed with: ${ result }`;
-    }, ( reason ) => {
-      // this.closeResult = `Dismissed ${ this.getDismissReason( reason ) }`;
-    } );
-  } */
+  }
 
   mostrarModal( usuario: Usuario, tipo: string ) {
 
-    this.tipo = tipo;
+    this.tipo = tipo; console.log( 'mostrarModal: ', this.tipo );
 
     this.id = usuario._id;
 

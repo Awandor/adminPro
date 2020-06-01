@@ -19,6 +19,8 @@ export class ModalUploadComponent implements OnInit {
 
   imagenActual: string;
 
+  tipo: string;
+
   constructor( public subirArchivoService: SubirArchivoService, public modalUploadService: ModalUploadService ) {
 
     console.log( 'Modal lista' );
@@ -27,7 +29,7 @@ export class ModalUploadComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.imagenActual = this.modalUploadService.img; console.log( this.imagenActual );
+    this.imagenActual = this.modalUploadService.img;
 
   }
 

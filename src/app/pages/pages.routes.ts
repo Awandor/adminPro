@@ -14,6 +14,8 @@ import { LoginGuardGuard } from '../services/guards/login-guard.guard';
 import { ProfileComponent } from './profile/profile.component';
 // Administración
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { HospitalesComponent } from './hospitales/hospitales.component';
+import { MedicosComponent } from './medicos/medicos.component';
 
 // Todas las rutas tienen una propiedad opcional llamada data que puede ser cualquier valor, objeto, arreglo, booleano
 // lo mejor es siempre tratarlo como un objeto
@@ -38,8 +40,8 @@ const pagesRoutes: Routes = [
       { path: 'profile', component: ProfileComponent, data: { titulo: 'Perfil' } },
       // Administración
       { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Administración de Usuarios' } },
-      /* { path: 'hospitales', component: UsuariosComponent, data: { titulo: 'Administración Hospitales' } },
-      { path: 'medicos', component: UsuariosComponent, data: { titulo: 'Administración de Médicos' } }, */
+      { path: 'hospitales', component: HospitalesComponent, data: { titulo: 'Administración de Hospitales' } },
+      { path: 'medicos', component: MedicosComponent, data: { titulo: 'Administración de Médicos' } },
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     ]
   },

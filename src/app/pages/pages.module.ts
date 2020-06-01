@@ -8,8 +8,6 @@ import { ChartsModule } from 'ng2-charts';
 import { PipesModule } from '../pipes/pipes.module';
 import { CommonModule } from '@angular/common';
 
-
-
 // Components
 import { PagesComponent } from '../pages/pages.component';
 import { DashboardComponent } from '../pages/dashboard/dashboard.component';
@@ -23,13 +21,12 @@ import { RxjsMapComponent } from './rxjs-map/rxjs-map.component';
 import { RxjsFilterComponent } from './rxjs-filter/rxjs-filter.component';
 import { RxjsUnsubscribeComponent } from './rxjs-unsubscribe/rxjs-unsubscribe.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { HospitalesComponent } from './hospitales/hospitales.component';
+import { MedicosComponent } from './medicos/medicos.component';
 
 // Rutas
 import { PAGES_ROUTES } from './pages.routes';
 import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
-
-
-
 
 @NgModule( {
   declarations: [
@@ -45,7 +42,9 @@ import { ModalUploadComponent } from '../components/modal-upload/modal-upload.co
     RxjsUnsubscribeComponent,
     ProfileComponent,
     UsuariosComponent,
-    ModalUploadComponent
+    ModalUploadComponent,
+    HospitalesComponent,
+    MedicosComponent
   ],
   exports: [
     PagesComponent,

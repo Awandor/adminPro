@@ -6,7 +6,7 @@ import { environment } from '../../environments/environment';
 } )
 export class ImagenPipe implements PipeTransform {
 
-  transform( img: string, tipo: string = 'usuario' ): any {
+  transform( img: string, tipo: string = 'usuarios' ): any {
 
     // Hemos establecido un valor por defecto para el tipo
 
@@ -27,15 +27,15 @@ export class ImagenPipe implements PipeTransform {
     }
 
     switch ( tipo ) {
-      case 'usuario':
+      case 'usuarios':
         url += '/usuarios/' + img;
         break;
 
-      case 'hospital':
+      case 'hospitales':
         url += '/hospitales/' + img;
         break;
 
-      case 'medico':
+      case 'medicos':
         url += '/medicos/' + img;
         break;
 

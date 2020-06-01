@@ -1,0 +1,69 @@
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <input #input type="text" class="form-control" placeholder="Buscar hospital..." (keyup)="buscarHospital(input.value)">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="cargando" class="row text-center animated fadeIn">
+
+    <div class="col-12">
+        <div class="alert alert-warning">
+            <strong>Cargando</strong>
+            <br>
+            <i class="fa fa-refresh fa-spin fa-2x mt-2"></i>
+            <br>
+            <span>Espere por favor</span>
+        </div>
+    </div>
+
+
+</div>
+
+<div *ngIf="!cargando" class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h3 class="card-title">{{ titulo }} (<small>{{ totalRegistros }}</small>)</h3>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th class="w70">Imagen</th>
+                            <th>Nombre</th>
+                            <th class="w200 text-center">
+                                <button class="btn btn-success btn-sm mr-1" (click)="crearHospital( )"><i class="fa fa-hospital-o"></i> Crear</button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let hospital of hospitales">
+                            <td class="align-middle text-center pointer" data-toggle="modal" data-target="#imageModal" data-tipo="hospitales" (click)="modalUploadService.mostrarModal(hospital, 'hospitales')">
+                                <!-- <td class="align-middle text-center" (click)="modalUploadService.mostrarModal( '#imageModal', hospital._id, 'hospitals')"> -->
+                                <img [src]="hospital.img | imagen:'hospitales'" class="h50">
+                            </td>
+                            <td class="align-middle">
+                                <input [(ngModel)]="hospital.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre del hospital">
+                            </td>
+                            <td class="align-middle text-center">
+                                <button class="btn btn-primary btn-sm mr-1" (click)="actualizarHospital( hospital )"><i class="fa fa-save"></i> Guardar</button>
+                                <button class="btn btn-danger btn-sm" (click)="borrarHospital( hospital )"><i class="fa fa-trash"></i> Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button class="btn btn-seconday mr-2" (click)="cambiarDesde(-5)">Previous</button>
+                <button class="btn btn-seconday" (click)="cambiarDesde(5)">Next</button>
+
+            </div>
+        </div>
+    </div>
+</div>
