@@ -16,6 +16,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { HospitalesComponent } from './hospitales/hospitales.component';
 import { MedicosComponent } from './medicos/medicos.component';
+import { MedicoComponent } from './medicos/medico.component';
 
 // Todas las rutas tienen una propiedad opcional llamada data que puede ser cualquier valor, objeto, arreglo, booleano
 // lo mejor es siempre tratarlo como un objeto
@@ -42,6 +43,7 @@ const pagesRoutes: Routes = [
       { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Administración de Usuarios' } },
       { path: 'hospitales', component: HospitalesComponent, data: { titulo: 'Administración de Hospitales' } },
       { path: 'medicos', component: MedicosComponent, data: { titulo: 'Administración de Médicos' } },
+      { path: 'medico/:id', component: MedicoComponent, data: { titulo: 'Administración de Médico' } },
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     ]
   },

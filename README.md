@@ -289,6 +289,10 @@ Añadimos la ruta
 Creamos un servicio llamado `hospital.service.ts`, ubicado en el siguiente path:
 services > hospital > hospital.service.ts
 
+`ng g s services/hospital/hospital --skipTests`
+
+Importamos el servicio a `service.index` y a `service.module`
+
 Añadimos a `sidebar.service`
 
 Este servicio debe de tener las siguientes funciones:
@@ -306,10 +310,23 @@ Comprobamos que esté importado en pages.module
 
 Añadimos la ruta
 
-Creamos un servicio llamado `medico.service.ts`, ubicado en el siguiente path:
-services > medico > medico.service.ts
-
 Añadimos a `sidebar.service`
+
+Vamos acrear una página de edición de médico `ng g c pages/medicos/medico -is --skipTests --flat`
+
+Añadimos la ruta `medico/:id`
+
+Creamos un servicio llamado `medico.service.ts`, ubicado en el siguiente path:
+services > medico > `medico.service.ts`
+
+`ng g s services/medico/medico --skipTests`
+
+Importamos el servicio a `service.index` y a `service.module`
+
+
+## SECCION DE MEDICO
+
+Tomamos de los recursos el `form-basic.html` > Sample Basic Form
 
 
 

@@ -27,27 +27,27 @@ export class HospitalesComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.obtenerHospitales();
+    this.obtenerHospitalesPaginacion();
 
     this.modalUploadService.notificacionSubidaImagen.subscribe( ( resp: any ) => {
 
       // console.log( 'notificacionSubidaImagen', resp );
 
-      this.obtenerHospitales();
+      this.obtenerHospitalesPaginacion();
 
     } );
 
   }
 
-  obtenerHospitales() {
+  obtenerHospitalesPaginacion() {
 
     this.cargando = true;
 
     this.titulo = 'Hospitales registrados';
 
-    this.hospitalService.obtenerHospitales( this.desde ).subscribe( ( resp: any ) => {
+    this.hospitalService.obtenerHospitalesPaginacion( this.desde ).subscribe( ( resp: any ) => {
 
-      console.log( 'obtenerHospitales', resp );
+      console.log( 'obtenerHospitalesPaginacion', resp );
 
       this.totalRegistros = resp.total;
 
@@ -85,7 +85,7 @@ export class HospitalesComponent implements OnInit {
 
     if ( terminoBusqueda.length <= 0 ) {
 
-      this.obtenerHospitales();
+      this.obtenerHospitalesPaginacion();
 
     }
 
@@ -116,7 +116,7 @@ export class HospitalesComponent implements OnInit {
 
           this.cargando = false;
 
-          this.obtenerHospitales();
+          this.obtenerHospitalesPaginacion();
 
         } );
 
@@ -142,7 +142,7 @@ export class HospitalesComponent implements OnInit {
 
     this.desde += valor;
 
-    this.obtenerHospitales();
+    this.obtenerHospitalesPaginacion();
 
   }
 
@@ -156,7 +156,7 @@ export class HospitalesComponent implements OnInit {
 
       this.cargando = false;
 
-      this.obtenerHospitales();
+      this.obtenerHospitalesPaginacion();
 
     } );
 
@@ -214,7 +214,7 @@ export class HospitalesComponent implements OnInit {
 
           }
 
-          this.obtenerHospitales();
+          this.obtenerHospitalesPaginacion();
 
         }, err => {
 

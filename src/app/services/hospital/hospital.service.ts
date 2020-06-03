@@ -20,7 +20,8 @@ import Swal from 'sweetalert2';
 // Importamos Router para poder navegar
 import { Router } from '@angular/router';
 
-import { SubirArchivoService } from '../../services/subirArchivo/subir-archivo.service'; // ojo a nuestro index de servicios, error cíclico?
+import { SubirArchivoService } from '../subirArchivo/subir-archivo.service'; // ojo a nuestro index de servicios, error cíclico?
+import { UsuarioService } from '../usuario/usuario.service';
 
 @Injectable( {
   providedIn: 'root'
@@ -34,39 +35,29 @@ export class HospitalService {
   constructor(
     public http: HttpClient,
     public router: Router,
-    public subirArchivoService: SubirArchivoService
+    public subirArchivoService: SubirArchivoService,
+    public usuarioService: UsuarioService
   ) {
 
     console.log( 'Servicio de hospital listo' );
 
-    // this.usuarioService.cargarStorage();
-    this.cargarStorage();
-
   }
 
-  // Vamos setear las variables para que nunca sean undefined y llamamos al método en el constructor
-
-  cargarStorage() {
-
-    if ( localStorage.getItem( 'token' ) ) {
-
-      this.token = localStorage.getItem( 'token' );
-      // this.usuario = JSON.parse( localStorage.getItem( 'usuario' ) );
-
-    } else {
-
-      this.token = '';
-      // this.usuario = null;
-
-    }
-
-  }
-
-  obtenerHospitales( desde: number = 0 ) {
+  obtenerHospitalesPaginacion( desde: number = 0 ) {
 
     // Creamos variable url dependiendo del entorno si es producción o es desarrollo
 
     const url = environment.url_services + '/hospital.route?desde=' + desde;
+
+    return this.http.get( url, {} );
+
+  }
+
+  obtenerHospitales() {
+
+    // Creamos variable url dependiendo del entorno si es producción o es desarrollo
+
+    const url = environment.url_services + '/hospital.route/todos';
 
     return this.http.get( url, {} );
 
@@ -82,13 +73,23 @@ export class HospitalService {
 
   }
 
+  obtenerHospitalPorId( id: string ) {
+
+    // Creamos variable url dependiendo del entorno si es producción o es desarrollo
+
+    const url = environment.url_services + '/hospital.route/' + id;
+
+    return this.http.get( url, {} ).pipe( map( ( resp: any ) => resp.hospital ) );
+
+  }
+
   borrarHospital( id: string ) {
 
     console.log( 'Hospital a borrar', id );
 
     // Creamos variable url dependiendo del entorno si es producción o es desarrollo
 
-    const url = environment.url_services + '/hospital.route/' + id + '?token=' + this.token;
+    const url = environment.url_services + '/hospital.route/' + id + '?token=' + this.usuarioService.token;
 
     console.log( 'Ruta enviada al back-end', url );
 
@@ -114,7 +115,7 @@ export class HospitalService {
 
     // Creamos variable url dependiendo del entorno si es producción o es desarrollo
 
-    const url = environment.url_services + '/hospital.route/' + hospital._id + '?token=' + this.token;
+    const url = environment.url_services + '/hospital.route/' + hospital._id + '?token=' + this.usuarioService.token;
 
     // Retornamos un observable al que nos podemos suscribir
 
@@ -142,7 +143,7 @@ export class HospitalService {
 
     // Creamos variable url dependiendo del entorno si es producción o es desarrollo
 
-    const url = environment.url_services + '/hospital.route' + '?token=' + this.token;
+    const url = environment.url_services + '/hospital.route' + '?token=' + this.usuarioService.token;
 
     // Retornamos un observable al que nos podemos suscribir
 

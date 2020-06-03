@@ -1,0 +1,84 @@
+<div *ngIf="cargando" class="row text-center animated fadeIn">
+
+    <div class="col-12">
+        <div class="alert alert-warning">
+            <strong>Cargando</strong>
+            <br>
+            <i class="fa fa-refresh fa-spin fa-2x mt-2"></i>
+            <br>
+            <span>Espere por favor</span>
+        </div>
+    </div>
+
+</div>
+
+<div *ngIf="!cargando" class="row animated fadeIn">
+
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+
+                <h3 class="card-title">Médico <small>{{medico._id}}</small></h3>
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <form #f="ngForm" ngNativeValidate (ngSubmit)="guardarMedico(f)">
+                            <div class="form-group">
+                                <label>Nombre</label>
+
+                                <!-- Para poder usar ngModel hay que haber importado FormsModule -->
+
+                                <input [(ngModel)]="medico.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre del médico" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Hospital</label>
+                                <select [(ngModel)]="medico.hospital" name="hospital" class="form-control" (change)="mostrarHospital( $event.target.value )" required>
+                                    <option value="">Seleccione hospital</option>
+                                    <option *ngFor="let hospital of hospitales" [value]="hospital._id">{{hospital.nombre}}</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Guardar</button>
+                            <button routerLink="/medicos" type="button" class="btn btn-inverse waves-effect waves-light">Cancelar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Hospital</h4>
+                <h6 class="card-subtitle">{{hospital.nombre}}</h6>
+
+                <img [src]="hospital.img | imagen:'hospitales'" alt="" class="rounded img-fluid">
+
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="medico._id" class="col-lg-3">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Fotografía del médico</h4>
+                <h6 class="card-subtitle">made with bootstrap elements</h6>
+
+                <!-- <img [src]="usuarioService.usuario.img | imagen" alt=""> -->
+
+                <!-- Ya hemos importado el servicio -->
+
+                <!-- Para poder usar *ngIf necesitamos importar CommonModule en pages.module -->
+
+                <img *ngIf="!imagenTemp" [src]="medico.img | imagen:'medicos'" class="rounded img-fluid" alt="{{medico.nombre}}">
+                <img *ngIf="imagenTemp" [src]="imagenTemp" class="rounded img-fluid" alt="Imagen temporal">
+
+                <div class="form-group mt-5">
+                    <input class="form-control" type="file" (change)="seleccionarImagen( $event.target.files[0] )">
+                </div>
+                <button type="button" class="btn btn-success waves-effect waves-light m-r-10 mt-1" (click)="cambiarImagen()" [disabled]="!imagenSubir"><i class="fa fa-save"></i> Save</button>
+            </div>
+        </div>
+    </div>
+
+</div>
