@@ -37,8 +37,8 @@
                     <thead>
                         <tr>
                             <th>Imagen</th>
-                            <th>Correo</th>
                             <th>Nombre</th>
+                            <th>Correo</th>
                             <th>Role</th>
                             <th>Auth</th>
                             <th></th>
@@ -50,8 +50,8 @@
                                 <!-- <td class="w70 align-middle text-center" (click)="modalUploadService.mostrarModal('#imageModal', usuario._id, 'usuarios')"> -->
                                 <img [src]="usuario.img | imagen" class="h50">
                             </td>
-                            <td class="align-middle">{{ usuario.email }}</td>
                             <td class="align-middle">{{ usuario.nombre }}</td>
+                            <td class="align-middle">{{ usuario.email }}</td>
                             <td class="align-middle">
 
                                 <select [(ngModel)]="usuario.role" name="role" class="form-control" (change)="guardarUsuario( usuario )">

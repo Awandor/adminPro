@@ -31,9 +31,6 @@ export class LoginGuardGuard implements CanActivate {
 
     }
 
-    console.log( 'pASÓ POR EL GUARD' );
-    return true;
-
   }
 
 }

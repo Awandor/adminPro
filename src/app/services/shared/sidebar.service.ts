@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
+import { UsuarioService } from '../usuario/usuario.service';
 
 @Injectable( {
   providedIn: 'root'
 } )
 export class SidebarService {
 
-  menu: any = [
+  menu: any = [];
+
+  /* menu: any = [
     {
       titulo: 'Principal',
       icono: 'mdi mdi-gauge',
@@ -29,7 +32,20 @@ export class SidebarService {
         { titulo: 'Médicos', url: '/medicos' },
       ]
     }
-  ];
+  ]; */
 
-  constructor() { }
+  constructor( public usuarioService: UsuarioService ) {
+
+    // El constructor se dispara sólo la primera vez, cada vez que se hace logout y login ya no se dispara
+    // Vamos a meterlo en una función que llamaremos desde sidebar.component onInit
+
+    // this.menu = usuarioService.menu;
+
+  }
+
+  cargarMenu() {
+
+    this.menu = this.usuarioService.menu;
+
+  }
 }

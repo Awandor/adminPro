@@ -10,9 +10,16 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 import { RxjsMapComponent } from './rxjs-map/rxjs-map.component';
 import { RxjsFilterComponent } from './rxjs-filter/rxjs-filter.component';
 import { RxjsUnsubscribeComponent } from './rxjs-unsubscribe/rxjs-unsubscribe.component';
-import { LoginGuardGuard } from '../services/guards/login-guard.guard';
 import { ProfileComponent } from './profile/profile.component';
+import { BuscadorComponent } from './buscador/buscador.component';
+
+// Guards
+
+import { LoginGuardGuard } from '../services/service.index';
+import { AdminGuard } from '../services/service.index';
+
 // Administración
+
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { HospitalesComponent } from './hospitales/hospitales.component';
 import { MedicosComponent } from './medicos/medicos.component';
@@ -39,8 +46,9 @@ const pagesRoutes: Routes = [
       { path: 'rxjs-filter', component: RxjsFilterComponent, data: { titulo: 'rxjs Observable - filter' } },
       { path: 'rxjs-unsubscribe', component: RxjsUnsubscribeComponent, data: { titulo: 'rxjs Observable - unsubscribe' } },
       { path: 'profile', component: ProfileComponent, data: { titulo: 'Perfil' } },
+      { path: 'buscador/:termino', component: BuscadorComponent, data: { titulo: 'Resultado de búsqueda' } },
       // Administración
-      { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Administración de Usuarios' } },
+      { path: 'usuarios', component: UsuariosComponent, canActivate: [ AdminGuard ], data: { titulo: 'Administración de Usuarios' } },
       { path: 'hospitales', component: HospitalesComponent, data: { titulo: 'Administración de Hospitales' } },
       { path: 'medicos', component: MedicosComponent, data: { titulo: 'Administración de Médicos' } },
       { path: 'medico/:id', component: MedicoComponent, data: { titulo: 'Administración de Médico' } },

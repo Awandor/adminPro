@@ -23,11 +23,12 @@ import { RxjsUnsubscribeComponent } from './rxjs-unsubscribe/rxjs-unsubscribe.co
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { HospitalesComponent } from './hospitales/hospitales.component';
 import { MedicosComponent } from './medicos/medicos.component';
+import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
+import { MedicoComponent } from './medicos/medico.component';
+import { BuscadorComponent } from './buscador/buscador.component';
 
 // Rutas
 import { PAGES_ROUTES } from './pages.routes';
-import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
-import { MedicoComponent } from './medicos/medico.component';
 
 @NgModule( {
   declarations: [
@@ -47,6 +48,7 @@ import { MedicoComponent } from './medicos/medico.component';
     HospitalesComponent,
     MedicosComponent,
     MedicoComponent,
+    BuscadorComponent,
   ],
   exports: [
     PagesComponent,

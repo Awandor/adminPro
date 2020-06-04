@@ -210,7 +210,7 @@ Queremos generar el token de Google, trabajamos en `login.component`
 
 `ng g g services/guards/loginGuard --skipTests`
 
-Escogemos opción CanActivate, qitamos cosas que no necesitamos y lo exportamos desde `services.index` y lo importamos en `services.module`
+Escogemos opción CanActivate, quitamos cosas que no necesitamos y lo exportamos desde `services.index` y lo importamos en `services.module`
 
 Ahora queremos proteger todas las rutas de `pages.routes`, añadimos a pagesRoutes > canActivate: [LoginGuard]
 
@@ -327,6 +327,54 @@ Importamos el servicio a `service.index` y a `service.module`
 ## SECCION DE MEDICO
 
 Tomamos de los recursos el `form-basic.html` > Sample Basic Form
+
+
+## BUSCADOR GENERAL
+
+Creamos el componente buscador en pages `ng g c pages/buscador -is --skipTests`
+
+Comprobamos que ha sido importado en `pages.module`
+
+La navegación será del header a la página, creamos la ruta en `pages.routes`
+
+Editamos `header.component` y buscamos el input, quitamos el formulario pues no queremos que haga un submit al presionar enter
+
+Pasamos el término de búsqueda a `buscador.component`
+
+Creamos el servicio buscador `ng g s services/buscador/buscador --skipTests`
+
+Importamos el servicio a `service.index` y a `service.module`
+
+
+## GENERAR EL MENU LATERAL DE FORMA DINAMICA DESDE EL BACK END
+
+Hemos añadido el menú a la respuesta del servidor al hacer login, ahora lo capturamos y lo guardamos en local storage en `usuario.service`
+
+
+## CREAR GUARD PARA PROTEGER PAGINA DE USUARIOS
+
+`ng g g services/guards/admin --skipTests`
+
+Escogemos opción CanActivate, quitamos cosas que no necesitamos y lo exportamos desde `services.index` y lo importamos en `services.module`
+
+Ahora queremos proteger todas las rutas de `pages.routes`, añadimos a pagesRoutes > canActivate: [AdminGuard] pero para el path usuarios.
+
+Ahora hay que hacer la validación en el back-end no basta con el front-end no es seguro.
+
+
+## PERMITIR QUE UN USUARIO NO ADMINISTRADOR PUEDA EDITARSE A SI MISMO
+
+Ahora que hemos implementado la validación de Administrador en el back-end para poder cambiar o borrar usuarios, tenemos que permitirlo si el usuario
+quiere editarse a sí mismo. Tanto en el front-end como en el back-end.
+
+
+## MANEJO DE ERRORES
+
+Empezamos por el login en `usuario.service`
+
+Añadimos un catchError después del operador map que atrapa el error, hay que importarlo igual que se hace con map y se añade con una coma
+dentro del pipe
+
 
 
 

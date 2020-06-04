@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
 
 import { HttpClient } from '@angular/common/http';
 
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 
 import Swal from 'sweetalert2';
 
@@ -22,6 +22,8 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
 import { SubirArchivoService } from '../../services/subirArchivo/subir-archivo.service'; // ojo a nuestro index de servicios, error cíclico?
+
+import { Observable, throwError } from 'rxjs';
 
 @Injectable( {
   providedIn: 'root'
@@ -31,6 +33,8 @@ export class UsuarioService {
   usuario: Usuario;
 
   token: string;
+
+  menu: any[] = [];
 
   constructor( public http: HttpClient, public router: Router, public subirArchivoService: SubirArchivoService ) {
 
@@ -59,6 +63,18 @@ export class UsuarioService {
       } );
 
       return resp.usuario;
+
+    } ), catchError( err => {
+
+      console.log( 'catchError', err );
+
+      Swal.fire( {
+        title: 'Error en el registro',
+        text: err.error.errors.message,
+        icon: 'error'
+      } );
+
+      return throwError( err );
 
     } ) );
 
@@ -90,9 +106,21 @@ export class UsuarioService {
       localStorage.setItem( 'token', resp.token );
       localStorage.setItem( 'usuario', JSON.stringify( resp.usuario ) ); */
 
-      this.guardarLocalStorage( resp.id, resp.token, resp.usuario );
+      this.guardarLocalStorage( resp.id, resp.token, resp.usuario, resp.menu );
 
       return true; // Para recibir algo en el suscriptor, puede ser lo que queramos
+
+    } ), catchError( err => {
+
+      console.log( 'catchError', err );
+
+      Swal.fire( {
+        title: 'Error en login',
+        text: err.error.mensaje,
+        icon: 'error'
+      } );
+
+      return throwError( err );
 
     } ) );
 
@@ -112,7 +140,7 @@ export class UsuarioService {
       localStorage.setItem( 'token', resp.token );
       localStorage.setItem( 'usuario', JSON.stringify( resp.usuario ) ); */
 
-      this.guardarLocalStorage( resp.id, resp.token, resp.usuario );
+      this.guardarLocalStorage( resp.id, resp.token, resp.usuario, resp.menu );
 
       return true; // Para recibir algo en el suscriptor, puede ser lo que queramos
 
@@ -120,15 +148,18 @@ export class UsuarioService {
 
   }
 
-  guardarLocalStorage( id: string, token: string, usuario: Usuario ) {
+  guardarLocalStorage( id: string, token: string, usuario: Usuario, menu: any ) {
 
     localStorage.setItem( 'id', id );
     localStorage.setItem( 'token', token );
     localStorage.setItem( 'usuario', JSON.stringify( usuario ) );
+    localStorage.setItem( 'menu', JSON.stringify( menu ) );
 
     this.usuario = usuario;
 
     this.token = token;
+
+    this.menu = menu;
 
   }
 
@@ -148,11 +179,13 @@ export class UsuarioService {
 
       this.token = localStorage.getItem( 'token' );
       this.usuario = JSON.parse( localStorage.getItem( 'usuario' ) );
+      this.menu = JSON.parse( localStorage.getItem( 'menu' ) );
 
     } else {
 
       this.token = '';
       this.usuario = null;
+      this.menu = [];
 
     }
 
@@ -162,12 +195,15 @@ export class UsuarioService {
 
     this.token = '';
     this.usuario = null;
+    this.menu = [];
 
     // localStorage.clear(); // Borra todo quermos mantener los settings
 
     localStorage.removeItem( 'token' );
 
     localStorage.removeItem( 'usuario' );
+
+    localStorage.removeItem( 'menu' );
 
     /* Swal.fire( {
       title: 'You have been logged out',
@@ -197,7 +233,7 @@ export class UsuarioService {
 
         const usuarioDB: Usuario = resp.usuario;
 
-        this.guardarLocalStorage( usuarioDB._id, this.token, usuarioDB );
+        this.guardarLocalStorage( usuarioDB._id, this.token, usuarioDB, this.menu );
 
       }
 
@@ -208,6 +244,18 @@ export class UsuarioService {
       } );
 
       return true;
+
+    } ), catchError( err => {
+
+      console.log( 'catchError', err );
+
+      Swal.fire( {
+        title: 'Error al actualizar',
+        text: err.error.errors.message,
+        icon: 'error'
+      } );
+
+      return throwError( err );
 
     } ) );
 
@@ -230,7 +278,7 @@ export class UsuarioService {
 
       const usuarioDB: Usuario = objetoRespuesta.usuario;
 
-      this.guardarLocalStorage( id, this.token, this.usuario );
+      this.guardarLocalStorage( id, this.token, this.usuario, this.menu );
 
       Swal.fire( {
         title: 'Imagen de usuario actualizada',
