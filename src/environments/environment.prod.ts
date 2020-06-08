@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  url_services: 'http://localhost:3000'
 };

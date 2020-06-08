@@ -376,6 +376,51 @@ Añadimos un catchError después del operador map que atrapa el error, hay que i
 dentro del pipe
 
 
+## LAZY LOAD
+
+Permite cargar progresivamente la aplicación, no toda de golpe. Si estamos en el login sólo se deben cargar los componentes de esa página y nada más.
+
+Hay que hacer modificaciones en `app.routes` y en `pages.routes`. Las rutas de `pages.routes` se van a cargar desde `app.routes` de forma dinámica.
+
+Retiramos `PagesComponent` de `pages.module` no se va a cargar ya desde ahí sino desde `app.module`
+
+Reordenamos las importaciones de módulos en `app.module`, `pages.module` y `shared.module`
+
+Retiramos `PageModule` de `app.module` ya que lo estamos cargando ahora desde `app.routes`
+
+
+## RENOVAR EL TOKEN
+
+Lo implmentamos en el back end.
+
+Ya que tenemos el servicio de renovar el token en el back end crearemos una función en el front end en `usuario.service`
+
+
+## GUARD PARA VERIFICAR Y RENOVAR EL TOKEN EN CASO DE QUE SEA NECESARIO
+
+El momento en que es necesario renovar el token es cuando está próximo a expirar, a gusto del programador
+
+`ng g g services/guards/verificaToken --skipTests`
+
+Lo exportamos desde `services.index` y lo importamos en `services.module`
+
+Lo aplicamos en `pages.routes`
+
+
+## GENERAR EL BUILD DE DISTRIBUCION PARA PRODUCCION
+
+`ng build --prod=true --aot=true --build-optimizer=true`
+
+Ojo que si --prod=true tomará el environment de producción. Aquí es cuando se generan los archivos de tamaño reducido
+que queremos para producción.
+
+Para hacer una prueba con la carpeta dist hacemos uso de nuestro http-server instalado ya de forma global.
+
+Navegamos con una consola a la carpeta `dist/adminPro` y ejecutamos `http-server -o -p 4200`
+
+-o para que se abra automáticamente la página en el navegador y p 4200 para que abra el puerto 4200 y coincida con nuestro entorno
+de desarrollo, una vez abierto cambiamos la ip por localhost o nos fallará la autenticación con Google
+
 
 
 

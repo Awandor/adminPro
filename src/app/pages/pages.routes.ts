@@ -1,6 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 
-import { PagesComponent } from '../pages/pages.component';
+// import { PagesComponent } from '../pages/pages.component';
 import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { ProgressComponent } from '../pages/progress/progress.component';
@@ -15,8 +15,9 @@ import { BuscadorComponent } from './buscador/buscador.component';
 
 // Guards
 
-import { LoginGuardGuard } from '../services/service.index';
+// import { LoginGuardGuard } from '../services/service.index';
 import { AdminGuard } from '../services/service.index';
+import { VerificaTokenGuard } from '../services/guards/verifica-token.guard';
 
 // Administración
 
@@ -30,7 +31,9 @@ import { MedicoComponent } from './medicos/medico.component';
 
 // Vamos a añadir data para pasarla a breadcrumbs
 
-const pagesRoutes: Routes = [
+// Usando children creamos rutas hijas que se pintan en <router-outlet></router-outlet> dentro de PagesComponent
+
+/* const pagesRoutes: Routes = [
   {
     path: '',
     component: PagesComponent,
@@ -55,6 +58,32 @@ const pagesRoutes: Routes = [
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     ]
   },
+]; */
+
+// Preparamos para Lazy Load
+
+const pagesRoutes: Routes = [
+  { path: 'dashboard', component: DashboardComponent, canActivate: [ VerificaTokenGuard ], data: { titulo: 'Dashboard' } },
+  // { path: 'dashboard', component: DashboardComponent, data: { titulo: 'Dashboard' } },
+  { path: 'account-settings', component: AccountSettingsComponent, data: { titulo: 'Account Settings' } },
+  { path: 'progress', component: ProgressComponent, data: { titulo: 'Progress bar' } },
+  { path: 'graficos1', component: Graficos1Component, data: { titulo: 'Diagramas' } },
+  { path: 'promesas', component: PromesasComponent, data: { titulo: 'Promesas' } },
+  { path: 'rxjs', component: RxjsComponent, data: { titulo: 'rxjs Observable - retry' } },
+  { path: 'rxjs-map', component: RxjsMapComponent, data: { titulo: 'rxjs Observable - map' } },
+  { path: 'rxjs-filter', component: RxjsFilterComponent, data: { titulo: 'rxjs Observable - filter' } },
+  { path: 'rxjs-unsubscribe', component: RxjsUnsubscribeComponent, data: { titulo: 'rxjs Observable - unsubscribe' } },
+  { path: 'profile', component: ProfileComponent, data: { titulo: 'Perfil' } },
+  { path: 'buscador/:termino', component: BuscadorComponent, data: { titulo: 'Resultado de búsqueda' } },
+  // Administración
+  { path: 'usuarios', component: UsuariosComponent, canActivate: [ VerificaTokenGuard, AdminGuard ], data: { titulo: 'Administración de Usuarios' } },
+  {
+    path: 'hospitales', component: HospitalesComponent, canActivate: [ VerificaTokenGuard ],
+    data: { titulo: 'Administración de Hospitales' }
+  },
+  { path: 'medicos', component: MedicosComponent, canActivate: [ VerificaTokenGuard ], data: { titulo: 'Administración de Médicos' } },
+  { path: 'medico/:id', component: MedicoComponent, data: { titulo: 'Administración de Médico' } },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ];
 
 // Usamos forChild que sólo espera un argumento, nada de useHash

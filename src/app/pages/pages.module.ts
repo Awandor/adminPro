@@ -9,7 +9,7 @@ import { PipesModule } from '../pipes/pipes.module';
 import { CommonModule } from '@angular/common';
 
 // Components
-import { PagesComponent } from '../pages/pages.component';
+// import { PagesComponent } from '../pages/pages.component';
 import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { ProgressComponent } from '../pages/progress/progress.component';
 import { Graficos1Component } from '../pages/graficos1/graficos1.component';
@@ -23,7 +23,7 @@ import { RxjsUnsubscribeComponent } from './rxjs-unsubscribe/rxjs-unsubscribe.co
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { HospitalesComponent } from './hospitales/hospitales.component';
 import { MedicosComponent } from './medicos/medicos.component';
-import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
+// import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 import { MedicoComponent } from './medicos/medico.component';
 import { BuscadorComponent } from './buscador/buscador.component';
 
@@ -32,7 +32,7 @@ import { PAGES_ROUTES } from './pages.routes';
 
 @NgModule( {
   declarations: [
-    PagesComponent,
+    // PagesComponent,
     DashboardComponent,
     ProgressComponent,
     Graficos1Component,
@@ -44,14 +44,14 @@ import { PAGES_ROUTES } from './pages.routes';
     RxjsUnsubscribeComponent,
     ProfileComponent,
     UsuariosComponent,
-    ModalUploadComponent,
+    // ModalUploadComponent,
     HospitalesComponent,
     MedicosComponent,
     MedicoComponent,
     BuscadorComponent,
   ],
   exports: [
-    PagesComponent,
+    // PagesComponent,
     DashboardComponent,
     ProgressComponent,
     Graficos1Component

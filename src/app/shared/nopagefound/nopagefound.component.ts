@@ -12,6 +12,8 @@ declare function initPlugins(): void;
 } )
 export class NopagefoundComponent implements OnInit {
 
+  year: number = new Date().getFullYear();
+
   constructor() { }
 
   ngOnInit(): void {

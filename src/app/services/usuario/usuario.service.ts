@@ -348,4 +348,38 @@ export class UsuarioService {
 
   }
 
+  renuevaToken() {
+
+    const url = environment.url_services + '/login.route/renuevatoken/?token=' + this.token;
+
+    return this.http.get( url ).pipe( map( ( resp: any ) => {
+
+      console.log( 'respuesta de back-end', resp );
+
+      console.log( 'token renovado' );
+
+      this.token = resp.token;
+
+      localStorage.setItem( 'token', resp.token );
+
+      return true;
+
+    } ), catchError( err => {
+
+      console.log( 'catchError', err );
+
+      this.router.navigate( [ '/login' ] );
+
+      Swal.fire( {
+        title: 'Error de token',
+        text: 'No se pudo renovar el token',
+        icon: 'error'
+      } );
+
+      return throwError( err );
+
+    } ) );
+
+  }
+
 }

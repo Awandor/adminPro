@@ -9,15 +9,15 @@ import { HeaderComponent } from '../shared/header/header.component';
 import { SidebarComponent } from '../shared/sidebar/sidebar.component';
 import { BreadcrumbsComponent } from '../shared/breadcrumbs/breadcrumbs.component';
 import { NopagefoundComponent } from '../shared/nopagefound/nopagefound.component';
-
-
+import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 
 @NgModule( {
   declarations: [
     BreadcrumbsComponent,
     HeaderComponent,
     SidebarComponent,
-    NopagefoundComponent
+    NopagefoundComponent,
+    ModalUploadComponent
   ],
   imports: [
     RouterModule,
@@ -28,7 +28,8 @@ import { NopagefoundComponent } from '../shared/nopagefound/nopagefound.componen
     BreadcrumbsComponent,
     HeaderComponent,
     SidebarComponent,
-    NopagefoundComponent
+    NopagefoundComponent,
+    ModalUploadComponent
   ]
 } )
 export class SharedModule { }

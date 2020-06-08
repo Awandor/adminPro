@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { retry } from 'rxjs/operators';
 
 /* RxJS (Reactive Extensions for JavaScript) is a library for reactive programming using observables
@@ -10,15 +11,12 @@ Mapping values to different types
 Filtering streams
 Composing multiple streams */
 
-
-
-
-@Component({
+@Component( {
   selector: 'app-rxjs',
   templateUrl: './rxjs.component.html',
   styles: [
   ]
-})
+} )
 export class RxjsComponent implements OnInit {
 
   miContador: number = 0;
@@ -65,7 +63,6 @@ export class RxjsComponent implements OnInit {
 
     } ); */
 
-
     // Me suscribo al observable, es en este momento en que se invoca, los subscribe tienen 3 callbacks
     // el valor enviado por next, el valor de error, y complete que no recibe valor
 
@@ -93,22 +90,22 @@ export class RxjsComponent implements OnInit {
 
     // observable.pipe( retry( 2 ) )
     this.retornaObservable().pipe( retry( 2 ) )
-    .subscribe( numero => {
+      .subscribe( numero => {
 
-      console.log('Subs ', numero);
-      this.miContador = numero;
+        console.log( 'Subs ', numero );
+        this.miContador = numero;
 
-    }, error => {
+      }, error => {
 
-      console.error('Error en el observable', error);
-      this.miMensaje = 'Error en el observable' + error;
+        console.error( 'Error en el observable', error );
+        this.miMensaje = 'Error en el observable' + error;
 
-    }, () => {
+      }, () => {
 
-      console.log('El observador terminó de observar');
-      this.miMensaje = 'El observador terminó de observar'
+        console.log( 'El observador terminó de observar' );
+        this.miMensaje = 'El observador terminó de observar'
 
-    } );
+      } );
 
   }
 
